@@ -1,0 +1,49 @@
+/* styles.css */
+
+/* Body styles */
+body {
+    background-color: #f8f9fa; /* Light grey background */
+    font-family: Arial, sans-serif; /* Font family */
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #007bff; /* Bootstrap primary color */
+    padding: 1rem; /* Padding around the navbar */
+}
+
+.navbar .navbar-brand, .navbar .nav-link {
+    color: rgb(17, 17, 17); /* Navbar text color */
+}
+
+.navbar .navbar-brand:hover, .navbar .nav-link:hover {
+    color: #f8f9fa; /* Hover color for navbar items */
+}
+
+/* Container styles */
+.container {
+    margin-top: 20px; /* Space above content */
+}
+
+/* Card styles for products */
+.card {
+    margin-bottom: 20px; /* Space between cards */
+}
+
+/* Table styles */
+.table {
+    margin-top: 20px; /* Space above tables */
+    background-color: #fff; /* White background for tables */
+}
+
+/* Footer styles */
+.footer {
+    background-color: #007bff; /* Same as navbar */
+    color: white; /* White text */
+    text-align: center; /* Center text */
+    padding: 10px 0; /* Padding */
+    position: fixed; /* Fix to bottom */
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+}

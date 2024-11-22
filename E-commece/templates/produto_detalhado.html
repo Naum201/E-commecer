@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do Produto - Loja E-commerce{% endblock %}
+
+{% block content %}
+<h2>{{ product.name }}</h2>
+<img src="{{ product.image_url or 'static/images/default.jpg' }}" class="img-fluid" alt="{{ product.name }}">
+<p>{{ product.description }}</p>
+<p>Preço: R$ {{ product.price }}</p>
+<p>Estoque: {{ product.stock }}</p>
+<a href="{{ url_for('carrinho') }}" class="btn btn-primary add-to-cart-btn" data-product-id="{{ product.id }}">Adicionar ao Carrinho</a>
+
+{% endblock %}

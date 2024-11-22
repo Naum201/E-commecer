@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Pedidos{% endblock %}
+
+{% block content %}
+<h2>Gerenciar Pedidos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID do Pedido</th>
+            <th>Usuário</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.user.username }}</td>
+            <td>{{ order.date }}</td>
+            <td>{{ 'Completo' if order.is_completed else 'Pendente' }}</td>
+            <td>
+                <a href="#" class="btn btn-danger">Cancelar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Login Admin - Loja E-commerce{% endblock %}
+
+{% block content %}
+<h2>Login Admin</h2>
+<form method="POST" action="{{ url_for('login_admin') }}">
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('cadastro_admin') }}">Não tem possui conta? Cadastre-se</a></li>
+</form>
+{% endblock %}

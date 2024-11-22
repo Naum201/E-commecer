@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Carrinho de Compras{% endblock %}
+{% block content %}
+<h2>Carrinho de Compras</h2>
+{% if cart_items %}
+    {% for item in cart_items %}
+    {% if item.product.is_active %}
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            {% if item.product.image_url %}
+            <div class="col-md-2">
+                <img src="{{ item.product.image_url }}" class="card-img" alt="{{ item.product.name }}">
+            </div>
+            {% endif %}
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.product.name }}</h5>
+                    <p class="card-text">Quantidade: {{ item.quantity }}</p>
+                    <p class="card-text">Preço: R$ {{ item.product.price * item.quantity }}</p>
+                    <a href="{{ url_for('remove_item', item_id=item.id) }}" class="btn btn-danger">Remover</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        {{ item.product.name }} está indisponível.
+    </div>
+    {% endif %}
+    {% endfor %}
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Total</h5>
+            <p class="card-text">R$ {{ total_price }}</p>
+        </div>
+    </div>
+    <a href="{{ url_for('checkout') }}" class="btn btn-success mt-3">Ir para Checkout</a>
+{% else %}
+    <p>O carrinho está vazio.</p>
+{% endif %}
+{% endblock %}

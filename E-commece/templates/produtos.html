@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Produtos{% endblock %}
+
+{% block content %}
+<h2>Gerenciar Produtos</h2>
+<a href="{{ url_for('item_cadastro') }}" class="btn btn-info">Cadastrar Produto</a>
+<div>
+    <canvas id="productChart" width="400" height="400"></canvas>
+</div>
+<p>Total Produtos: {{ total }}</p>
+<p>Produtos Ativos: {{ active }}</p>
+<p>Produtos Inativos: {{ inactive }}</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome do Produto</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>R$ {{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>
+                <a href="{{ url_for('produto_detalhado', id=product.id) }}" class="btn btn-info">Ver</a>
+                <a href="#" class="btn btn-danger">Remover</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('productChart').getContext('2d');
+    const productChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Ativos', 'Inativos'],
+            datasets: [{
+                label: 'Quantidade de Produtos',
+                data: [{ active }, { inactive }],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Distribuição de Produtos'
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

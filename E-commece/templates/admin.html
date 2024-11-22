@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - Loja E-commerce{% endblock %}
+
+{% block content %}
+<h2>Painel Administrativo</h2>
+
+<!-- Navigation Buttons -->
+<div class="btn-group mb-3" role="group" aria-label="Admin Navigation">
+    <a href="{{ url_for('admin') }}" class="btn btn-primary">Dashboard</a>
+    <a href="{{ url_for('produtos') }}" class="btn btn-secondary">Gerenciar Produtos</a>
+    <a href="{{ url_for('clientes') }}" class="btn btn-success">Gerenciar Clientes</a>
+    <a href="{{ url_for('pedidos') }}" class="btn btn-warning">Gerenciar Pedidos</a>
+</div>
+
+<!-- Dashboard for Users -->
+<h3>Usuários</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome de Usuário</th>
+            <th>Email</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ 'Ativo' if user.is_active else 'Inativo' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Dashboard for Products -->
+<h3>Produtos</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome do Produto</th>
+            <th>Preço</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>R$ {{ product.price }}</td>
+            <td>{{ 'Ativo' if product.stock > 0 else 'Inativo' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+<!-- Orders Dashboard -->
+<h3>Pedidos</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID do Pedido</th>
+            <th>Usuário</th>
+            <th>Data</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.user.username }}</td>
+            <td>{{ order.date }}</td>
+            <td>{{ 'Completo' if order.is_completed else 'Pendente' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
